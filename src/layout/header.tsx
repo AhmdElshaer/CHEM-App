@@ -19,7 +19,7 @@ function Header() {
               <button className="bg-lime-500 px-1">Search</button>
             </form>
           </div>
-          <div className="flex justify-center flex-col w-40 rounded bg-lime-500">
+          <div className="flex justify-center items-center flex-col w-40 rounded bg-lime-500">
             <div>Cart</div>
             <span className="block">0</span>
             </div>
@@ -27,9 +27,9 @@ function Header() {
 
         <div className="navigator h-10 mt-3 bg-gradient-to-t from-black via-neutral-800 to-neutral-700 rounded ">
           <ul className="flex justify-end space-x-4 text-s items-center">
-            <li className="hover:text-lime-500"><NavLink to={'/'}>Home</NavLink></li>
+            <li className="hover:text-lime-500"><NavLink to={'/'} className={({isActive}) => isActive ? "active" : ''} end>Home</NavLink></li>
             <li className="hover:text-lime-500">Catalog</li>
-            <li className="hover:text-lime-500"><NavLink to={'/allProducts'}>All products</NavLink></li>
+            <li className="hover:text-lime-500"><NavLink to={'/allProducts'} className={({isActive}) => isActive ? "active" : ''} end>All products</NavLink></li>
             <li className="hover:text-lime-500">About Us</li>
             <li className="hover:text-lime-500">Documentation</li>
             <li className="hover:text-lime-500">Contact US</li>

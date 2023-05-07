@@ -7,7 +7,7 @@ function RootLayout () {
   return(
     <>
     <Header />
-    <main className="container flex justify-center items-center h-screen m-auto">
+    <main className="container flex justify-center items-center m-auto mt-3">
     <Outlet />
     </main>
     </>
