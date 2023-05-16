@@ -1,20 +1,25 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { json } from 'react-router-dom';
 import ProductItem from '../components/ProductItem';
+import { ProductType } from '../model/Products';
+import { useDispatch, useSelector } from 'react-redux';
+import { productActions } from '../store/store';
 
-interface ProductType {
-  id: string;
-  title: string;
-  category: string;
-  description: string;
-  price: string;
-  image1: string;
-  image2: string;
-  image3: string;
-}
+// interface ProductType {
+//   id: string;
+//   title: string;
+//   category: string;
+//   description: string;
+//   price: string;
+//   image1: string;
+//   image2: string;
+//   image3: string;
+// }
 
 const Products: React.FC = (): ReactElement => {
-  const [allProducts, setAllProducts] = useState<ProductType[]>([]);
+  // const [allProducts, setAllProducts] = useState<ProductType[]>([]);
+  const allProducts: ProductType[] = useSelector((state: any)=> state.products.AllProducts);
+  const dispatch = useDispatch();
   
   useEffect( () => {
     async function fetchAllProduct () {
@@ -40,16 +45,17 @@ const Products: React.FC = (): ReactElement => {
           })
         }
       }
-      setAllProducts(allProducts);
+      // setAllProducts(allProducts);
+      dispatch(productActions.setProducts(allProducts));
     }
     fetchAllProduct();
-  },[])
+  },[dispatch])
 
   console.log(allProducts)
   return(
-    <section className='flex flex-col'>
+    <section className='flex flex-col w-full'>
     <div className='border-2 rounded-t-lg px-2 py-4 my-2 bg-gradient-to-b from-white via-white to-stone-700'>Products</div>
-    <ul className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4'>
+    <ul className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
       {allProducts.map((product: ProductType) => (
         <ProductItem 
         key={product.id}
